@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#main-page {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(72, 4, 72);
+    height: 100vh;
+}
+
+.title {
+    margin: 10vh 0 18vh 0;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+#loginForm {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input {
+    width: 35%;
+    margin: 0 0 3vh 0;
+    height: 6vh;
+    font-size: 1.9rem;
+}
+#loginBtn {
+    font-size: 2rem;
+    padding: 5px 15px 5px 15px;
+    background-color: rgb(104, 221, 100);
+    border: none;
+    border-radius: 20px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+#loginBtn:hover {
+    transform: scale(1.1);
+    background-color: rgb(84, 218, 80);
+}
+
+footer {
+    display: flex;
+}
+#signupBtn {
+    margin-top: 40vh;
+    font-size: 2rem;
+    padding: 5px 15px 5px 15px;
+    background-color: rgb(89, 153, 196);
+    border: none;
+    border-radius: 20px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+#signupBtn:hover {
+    transform: scale(1.1);
+    background-color: rgb(73, 149, 199);
+}
+
+#signupForm {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+}
+#signupForm input {
+    width: 100%;
+}
+#signupOrder {
+    margin-top: 10vh;
+    font-size: 2rem;
+    padding: 5px 15px 5px 15px;
+    background-color: rgb(89, 153, 196);
+    border: none;
+    border-radius: 20px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+#signupOrder:hover {
+    transform: scale(1.1);
+    background-color: rgb(73, 149, 199);
+}
