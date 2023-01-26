@@ -30,7 +30,7 @@ class Messege {
 
 let content = document.getElementById('content');
 
-function load() {
+function loadMain() {
     content.innerHTML = `
                 <div id="loginForm">
                     <input type="text" id="loginInput" maxlength="25" placeholder="Enter your name">
@@ -42,10 +42,12 @@ function load() {
                 </footer>`
                 
                 let signupBtn = document.getElementById('signupBtn');
-                signupBtn.addEventListener('click', signupBtnHandler)
+                signupBtn.addEventListener('click', signupBtnHandler);
+                let loginBtn = document.getElementById('loginBtn');
+                loginBtn.addEventListener('click', loadUserPage);
 }
 
-load();
+loadMain();
 
 let signupPage
 function signupBtnHandler() {
@@ -78,11 +80,40 @@ function signupOrderHandler() {
         }
         if(!exists) {
             localStorage.setItem(signup1.value, new User(signup1.value));
-            load();  
+            loadMain();  
         }
         else {
             alert("User already exists");
-            load();
+            loadMain();
         }
+    }
+}
+
+function loadUserPage() {
+    let loginInput = document.getElementById('loginInput');
+    let contacts = [];
+    let found = false;
+    for(let i = 0; i<localStorage.length; i++) {
+        if(loginInput.value == localStorage.key(i)) {
+            found = true;
+        }
+        else {
+            contacts.push(localStorage.key(i));
+        }
+    }
+    if(found) {
+        content.innerHTML = '';
+        let contactsContainer = document.createElement('div');
+        contactsContainer.classList.add('contactsContainer');
+        content.appendChild(contactsContainer)
+        for(let i = 0; i<contacts.length; i++) {
+            let contact = document.createElement('button');
+            contact.classList.add('contact');
+            contact.textContent = contacts[i];
+            contactsContainer.appendChild(contact);
+        }
+    }
+    else {
+        alert("User not found")
     }
 }

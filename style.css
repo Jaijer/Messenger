@@ -13,7 +13,7 @@
 }
 
 .title {
-    margin: 10vh 0 18vh 0;
+    margin: 10vh 0 14vh 0;
     font-size: 3rem;
     color: white;
     text-shadow: 1px 1px 2px black;
@@ -33,7 +33,7 @@ input {
 }
 #loginBtn {
     font-size: 2rem;
-    padding: 5px 15px 5px 15px;
+    padding: 10px 20px 10px 20px;
     background-color: rgb(104, 221, 100);
     border: none;
     border-radius: 20px;
@@ -84,4 +84,24 @@ footer {
 #signupOrder:hover {
     transform: scale(1.1);
     background-color: rgb(73, 149, 199);
+}
+
+.contactsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact {
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    padding: 7px 18px 7px 18px;
+    background-color: rgb(94, 164, 211);
+    border: none;
+    border-radius: 20px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+.contact:hover {
+    transform: scale(1.1);
+    background-color: rgb(202, 100, 129);
 }
