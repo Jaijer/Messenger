@@ -27,7 +27,7 @@ class Messege {
     }
 }
 
-
+const users = [];
 let content = document.getElementById('content');
 
 function loadMain() {
@@ -73,13 +73,14 @@ function signupOrderHandler() {
     }
     else {
         let exists = false;
-        for(let i = 0; i<localStorage.length; i++) {
-            if(localStorage.key(i) == signup1.value) {
+        for(let i = 0; i<users.length; i++) {
+            if(users[i].name == signup1.value) {
                 exists = true;
             }
         }
         if(!exists) {
-            localStorage.setItem(signup1.value, new User(signup1.value));
+            let user = new User(signup1.value);
+            users.push(user);
             loadMain();  
         }
         else {
@@ -93,27 +94,43 @@ function loadUserPage() {
     let loginInput = document.getElementById('loginInput');
     let contacts = [];
     let found = false;
-    for(let i = 0; i<localStorage.length; i++) {
-        if(loginInput.value == localStorage.key(i)) {
+    let user;
+    for(let i = 0; i<users.length; i++) {
+        let currentContact = users[i].name;
+        if(loginInput.value.toUpperCase() == currentContact.toUpperCase()) {
             found = true;
+            user = users[i];
         }
         else {
-            contacts.push(localStorage.key(i));
+            contacts.push(currentContact);
         }
     }
     if(found) {
         content.innerHTML = '';
         let contactsContainer = document.createElement('div');
         contactsContainer.classList.add('contactsContainer');
-        content.appendChild(contactsContainer)
+        content.appendChild(contactsContainer);
         for(let i = 0; i<contacts.length; i++) {
             let contact = document.createElement('button');
             contact.classList.add('contact');
             contact.textContent = contacts[i];
+            contact.addEventListener('click', ()=>{
+                let contactUser;
+                for(let j = 0; j<users.length; j++) {
+                    if(contact.textContent == users[j].name) {
+                        contactUser = users[j];
+                    }
+                }
+                loadChat(user, contactUser);
+            });
             contactsContainer.appendChild(contact);
         }
     }
     else {
         alert("User not found")
     }
+}
+
+function loadChat(user, contact) {
+    console.log(user, contact);
 }
