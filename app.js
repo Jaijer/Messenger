@@ -29,8 +29,10 @@ class Messege {
 
 const users = [];
 let content = document.getElementById('content');
+let title = document.getElementById('title')
 
 function loadMain() {
+    title.textContent = 'Messenger';
     content.innerHTML = `
                 <div id="loginForm">
                     <input type="text" id="loginInput" maxlength="25" placeholder="Enter your name">
@@ -91,6 +93,7 @@ function signupOrderHandler() {
 }
 
 function loadUserPage() {
+    title.textContent = 'Contacts';
     let loginInput = document.getElementById('loginInput');
     let contacts = [];
     let found = false;
@@ -107,9 +110,6 @@ function loadUserPage() {
     }
     if(found) {
         content.innerHTML = '';
-        let contactsContainer = document.createElement('div');
-        contactsContainer.classList.add('contactsContainer');
-        content.appendChild(contactsContainer);
         for(let i = 0; i<contacts.length; i++) {
             let contact = document.createElement('button');
             contact.classList.add('contact');
@@ -123,7 +123,7 @@ function loadUserPage() {
                 }
                 loadChat(user, contactUser);
             });
-            contactsContainer.appendChild(contact);
+            content.appendChild(contact);
         }
     }
     else {
@@ -133,4 +133,10 @@ function loadUserPage() {
 
 function loadChat(user, contact) {
     console.log(user, contact);
+    
+    title.textContent = contact.name;
+    content.innerHTML = 
+    `
+    <div>Chat</div>f
+    `
 }

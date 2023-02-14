@@ -12,11 +12,27 @@
     height: 100vh;
 }
 
-.title {
+#container {
+    justify-content: center;
+    /* display: flex; */
+    flex-direction: column;
+    min-width: 50%;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
     margin: 10vh 0 14vh 0;
     font-size: 3rem;
     color: white;
     text-shadow: 1px 1px 2px black;
+    display: flex;
+    justify-content:center ;
 }
 
 #loginForm {
@@ -87,12 +103,8 @@ footer {
     background-color: rgb(73, 149, 199);
 }
 
-.contactsContainer {
-    display: flex;
-    flex-direction: column;
-}
-
 .contact {
+    width: 50%;
     margin-bottom: 30px;
     font-size: 2.2rem;
     padding: 7px 18px 7px 18px;
