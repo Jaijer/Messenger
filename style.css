@@ -27,7 +27,9 @@
 }
 
 #title {
-    margin: 10vh 0 14vh 0;
+    /* margin: 10vh 0 10vh 0; */
+    height: 20vh;
+    align-items: center;
     font-size: 3rem;
     color: white;
     text-shadow: 1px 1px 2px black;
@@ -36,6 +38,7 @@
 }
 
 #loginForm {
+    margin-top: 9vh;
     width: 80vw;
     display: flex;
     flex-direction: column;
@@ -81,6 +84,7 @@ footer {
 }
 
 #signupForm {
+    margin-top: 9vh;
     width: 30vw;
     display: flex;
     flex-direction: column;
@@ -119,4 +123,32 @@ footer {
 .contact:hover {
     transform: scale(1.1);
     background-color: rgb(192, 85, 115);
+}
+
+#messagesContainer {
+    display: flex;
+    flex-direction: column;
+    height: 68vh;
+    width: 100%;
+    background-color: rgba(154, 79, 139, 0.663);
+    margin-bottom: 2vh;
+}
+
+#messageForm {
+    width: 100%;
+}
+
+#messageInput {
+    width: 80%;
+    font-size: 1.3rem;
+}
+
+#sendMessage {
+    width: 15%;
+    border: none;
+    font-size: 1.3rem;
+    padding: 8px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(191, 104, 228, 0.832);
 }

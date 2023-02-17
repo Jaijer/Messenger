@@ -1,29 +1,9 @@
 class User {
     constructor(name) {
         this.name = name;
-        this.sentMes = [];
-        this.recievedMes = [];
-        this.order = []; //order of sent and recieved messeges if 0 => sent if 1 => recieved
-    }
-}
-
-class Messege {
-    constructor(from, to, content) {
-        this.from = from;
-        this.to = to;
-        this.content = content;
-    }
-
-    getFrom() {
-        return this.from;
-    }
-
-    getTo() {
-        return this.to;
-    }
-
-    getContent() {
-        return this.content;
+        this.sentMes = {};
+        this.recievedMes = {};
+        this.order = {}; //order of sent and recieved messeges if 0 => sent if 1 => recieved
     }
 }
 
@@ -82,8 +62,19 @@ function signupOrderHandler() {
         }
         if(!exists) {
             let user = new User(signup1.value);
+
+            for (let i = 0; i<users.length; i++) { //Add every user to the new user's 3 dics and vice verca
+                users[i].sentMes[user.name] = [];
+                users[i].recievedMes[user.name] = [];
+                users[i].order[user.name] = [];
+                user.sentMes[users[i].name] = [];
+                user.recievedMes[users[i].name] = [];
+                user.order[users[i].name] = [];
+            }
             users.push(user);
-            loadMain();  
+
+            
+            loadMain();
         }
         else {
             alert("User already exists");
@@ -131,12 +122,32 @@ function loadUserPage() {
     }
 }
 
-function loadChat(user, contact) {
-    console.log(user, contact);
-    
+function loadChat(user, contact) {    
     title.textContent = contact.name;
     content.innerHTML = 
     `
-    <div>Chat</div>f
+    <div id="messagesContainer"></div>
+    <div id="messageForm">
+        <input type="text" id="messageInput" placeholder="Type a message" maxlength="50">
+        <button id="sendMessage">Send</button>
+    </div>
     `
+    let messageForm = document.getElementById("messageForm");
+
+    let sendBtn = document.getElementById("sendMessage");
+    let mesInput = document.getElementById("messageInput");
+    sendBtn.addEventListener("click", ()=>{
+        sendMes(user, contact, mesInput)
+    });
+}
+
+function sendMes(user, contact, mesInput) {
+    let mes = mesInput.value;
+    mesInput.value = "";
+    user.sentMes[contact.name].push(mes);
+    contact.recievedMes[user.name].push(mes);
+    user.order[contact.name].push(1); //1 indicates that the message is sent and 0 recieved
+    contact.order[user.name].push(0);
+
+    loadChat(user, contact);
 }
