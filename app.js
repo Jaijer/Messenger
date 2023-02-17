@@ -1,8 +1,7 @@
 class User {
     constructor(name) {
         this.name = name;
-        this.sentMes = {};
-        this.recievedMes = {};
+        this.mes = {};
         this.order = {}; //order of sent and recieved messeges if 0 => sent if 1 => recieved
     }
 }
@@ -10,9 +9,11 @@ class User {
 const users = [];
 let content = document.getElementById('content');
 let title = document.getElementById('title')
+const backBtn = document.getElementById('transBtn');
 
 function loadMain() {
     title.textContent = 'Messenger';
+    backBtn.style.display = "none";
     content.innerHTML = `
                 <div id="loginForm">
                     <input type="text" id="loginInput" maxlength="25" placeholder="Enter your name">
@@ -26,13 +27,17 @@ function loadMain() {
                 let signupBtn = document.getElementById('signupBtn');
                 signupBtn.addEventListener('click', signupBtnHandler);
                 let loginBtn = document.getElementById('loginBtn');
-                loginBtn.addEventListener('click', loadUserPage);
+                let loginInput = document.getElementById('loginInput');
+                loginBtn.addEventListener('click', ()=>{loadUserPage(loginInput.value)});
 }
 
 loadMain();
 
 let signupPage
 function signupBtnHandler() {
+    backBtn.style.display = "block";
+    backBtn.textContent = "Back to login";
+    backBtn.onclick = loadMain;
     content.innerHTML = `
                 <div id="signupForm">
                     <input type="text" id="signup1" maxlength="25" placeholder="Enter your name">
@@ -64,11 +69,9 @@ function signupOrderHandler() {
             let user = new User(signup1.value);
 
             for (let i = 0; i<users.length; i++) { //Add every user to the new user's 3 dics and vice verca
-                users[i].sentMes[user.name] = [];
-                users[i].recievedMes[user.name] = [];
+                users[i].mes[user.name] = [];
                 users[i].order[user.name] = [];
-                user.sentMes[users[i].name] = [];
-                user.recievedMes[users[i].name] = [];
+                user.mes[users[i].name] = [];
                 user.order[users[i].name] = [];
             }
             users.push(user);
@@ -83,15 +86,17 @@ function signupOrderHandler() {
     }
 }
 
-function loadUserPage() {
+function loadUserPage(username) {
     title.textContent = 'Contacts';
-    let loginInput = document.getElementById('loginInput');
+    backBtn.style.display = "block";
+    backBtn.textContent = "Sign out";
+    backBtn.onclick = loadMain;
     let contacts = [];
     let found = false;
     let user;
     for(let i = 0; i<users.length; i++) {
         let currentContact = users[i].name;
-        if(loginInput.value.toUpperCase() == currentContact.toUpperCase()) {
+        if(username.toUpperCase() == currentContact.toUpperCase()) {
             found = true;
             user = users[i];
         }
@@ -122,8 +127,12 @@ function loadUserPage() {
     }
 }
 
-function loadChat(user, contact) {    
+
+function loadChat(user, contact) {  
     title.textContent = contact.name;
+    backBtn.style.display = "block";
+    backBtn.textContent = "Go to contacts";
+    backBtn.onclick = ()=>{loadUserPage(user.name)};
     content.innerHTML = 
     `
     <div id="messagesContainer"></div>
@@ -132,7 +141,22 @@ function loadChat(user, contact) {
         <button id="sendMessage">Send</button>
     </div>
     `
-    let messageForm = document.getElementById("messageForm");
+    let messagesContainer = document.getElementById("messagesContainer");
+    for(let i = 0; i<user.mes[contact.name].length; i++) {
+        let mesContainer = document.createElement("div");
+        if(user.order[contact.name][i] == 1) {
+            mesContainer.classList.add("mes");
+        }        
+        else {
+            mesContainer.classList.add("mes");
+            mesContainer.classList.add("recievedMes");
+        }
+        text = document.createElement("p");
+        text.textContent = user.mes[contact.name][i];
+
+        mesContainer.appendChild(text);
+        messagesContainer.appendChild(mesContainer);
+    }
 
     let sendBtn = document.getElementById("sendMessage");
     let mesInput = document.getElementById("messageInput");
@@ -143,11 +167,13 @@ function loadChat(user, contact) {
 
 function sendMes(user, contact, mesInput) {
     let mes = mesInput.value;
-    mesInput.value = "";
-    user.sentMes[contact.name].push(mes);
-    contact.recievedMes[user.name].push(mes);
-    user.order[contact.name].push(1); //1 indicates that the message is sent and 0 recieved
-    contact.order[user.name].push(0);
-
-    loadChat(user, contact);
+    if(mes != "") {
+        mesInput.value = "";
+        user.mes[contact.name].push(mes);
+        contact.mes[user.name].push(mes);
+        user.order[contact.name].push(1); //1 indicates that the message is sent and 0 recieved
+        contact.order[user.name].push(0);
+    
+        loadChat(user, contact);
+    }  
 }

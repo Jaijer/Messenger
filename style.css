@@ -10,6 +10,7 @@
     justify-content: center;
     background-color: rgb(72, 4, 72);
     height: 100vh;
+    overflow-y: auto;
 }
 
 #container {
@@ -35,6 +36,23 @@
     text-shadow: 1px 1px 2px black;
     display: flex;
     justify-content:center ;
+}
+
+#transBtn {
+    position: absolute;
+    left: 4%;
+    top: 4%;
+    font-size: 1.8rem;
+    padding: 10px 20px 10px 20px;
+    background-color: rgba(234, 83, 83, 0.864);
+    border: none;
+    border-radius: 20px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+#transBtn:hover {
+    transform: scale(1.1);
+    background-color: rgb(234, 83, 83);
 }
 
 #loginForm {
@@ -132,6 +150,9 @@ footer {
     width: 100%;
     background-color: rgba(154, 79, 139, 0.663);
     margin-bottom: 2vh;
+    border: none;
+    border-radius: 1%;
+    overflow-y: auto;
 }
 
 #messageForm {
@@ -151,4 +172,27 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     background-color: rgba(191, 104, 228, 0.832);
+}
+
+.mes {
+    font-size: 1.4rem;
+    margin: 8px;
+    margin-left: auto;
+    flex-grow: 0;
+    padding: 15px;
+    width: fit-content;
+    max-width: 60%;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    border: none;
+    border-radius: 15px;
+    background-color: rgba(34, 134, 222, 0.696);
+}
+p {
+    max-width: 500px;
+    word-wrap: break-word;
+}
+.recievedMes {
+    margin-left: 8px;
+    background-color: rgba(222, 34, 53, 0.696);
 }
