@@ -137,7 +137,7 @@ function loadChat(user, contact) {
     `
     <div id="messagesContainer"></div>
     <div id="messageForm">
-        <input type="text" id="messageInput" placeholder="Type a message" maxlength="50">
+        <input type="text" id="messageInput" placeholder="Type a message" maxlength="200">
         <button id="sendMessage">Send</button>
     </div>
     `
