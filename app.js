@@ -87,10 +87,6 @@ function signupOrderHandler() {
 }
 
 function loadUserPage(username) {
-    title.textContent = 'Contacts';
-    backBtn.style.display = "block";
-    backBtn.textContent = "Sign out";
-    backBtn.onclick = loadMain;
     let contacts = [];
     let found = false;
     let user;
@@ -105,6 +101,10 @@ function loadUserPage(username) {
         }
     }
     if(found) {
+        title.textContent = 'Contacts';
+        backBtn.style.display = "block";
+        backBtn.textContent = "Sign out";
+        backBtn.onclick = loadMain;
         content.innerHTML = '';
         for(let i = 0; i<contacts.length; i++) {
             let contact = document.createElement('button');
