@@ -15,7 +15,6 @@
 
 #container {
     justify-content: center;
-    /* display: flex; */
     flex-direction: column;
     min-width: 50%;
 }
@@ -28,7 +27,6 @@
 }
 
 #title {
-    /* margin: 10vh 0 10vh 0; */
     height: 20vh;
     align-items: center;
     font-size: 3rem;
@@ -147,7 +145,7 @@ footer {
     display: flex;
     flex-direction: column;
     height: 68vh;
-    width: 100%;
+    width: 60vw;
     background-color: rgba(154, 79, 139, 0.663);
     margin-bottom: 2vh;
     border: none;
@@ -160,12 +158,12 @@ footer {
 }
 
 #messageInput {
-    width: 80%;
+    width: 78%;
     font-size: 1.3rem;
 }
 
 #sendMessage {
-    width: 15%;
+    width: 20%;
     border: none;
     font-size: 1.3rem;
     padding: 8px 0;
@@ -195,4 +193,44 @@ p {
 .recievedMes {
     margin-left: 8px;
     background-color: rgba(222, 34, 53, 0.696);
+}
+
+/* Tablets and Mobiles */
+@media (max-width: 800px) {
+    #title {
+        margin-top: 10vh;
+        height: 10vh;
+        font-size: 2.3rem;
+    }
+    #transBtn {
+        left: 4%;
+        top: 2%;
+        font-size: 1.7rem;
+        padding: 5px 10px 5px 10px;
+    }
+    input {
+        width: 85%;
+        font-size: 1.6rem;
+    }
+    #loginBtn {
+        font-size: 1.8rem;
+        padding: 8px 16px 8px 16px;
+    }
+    #signupBtn {
+        font-size: 1.8rem;
+        padding: 5px 15px 5px 15px;
+    }
+    #signupOrder {
+        font-size: 1.6rem;
+        padding: 5px 15px 5px 15px;
+    }
+    #signupForm {
+        width: 70vw;
+    }
+    .contact {
+        width: 100%;
+    }
+    #messagesContainer {
+        width: 90vw;
+    }
 }
